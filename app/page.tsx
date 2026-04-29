@@ -2,7 +2,7 @@
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link"
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { getRandomInt } from "./utils";
 
 export default function Home() {
@@ -56,7 +56,7 @@ export default function Home() {
         
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: { target: { value: SetStateAction<number>; }; }) => {
     setSelectedValue(event.target.value);
     console.log("change");
   }
