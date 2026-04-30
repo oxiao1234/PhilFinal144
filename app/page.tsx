@@ -98,7 +98,7 @@ export default function Home() {
   return (
     <div className="flex flex-col place-items-center">
       <div className = "container">
-        <h1>Natty or Not?</h1>
+        <h1 className = "text-center">Natty or Not?</h1>
       </div>
 
      {!start && 
