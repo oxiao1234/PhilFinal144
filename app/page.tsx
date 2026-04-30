@@ -1,4 +1,5 @@
 'use client';
+const { useCallback } = require("react");
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import Link from "next/link"
@@ -15,10 +16,10 @@ export default function Home() {
         selectedValue,
         setSelectedValue,
     ] = useState(-1);
-
   const [submitted, setSubmit] = useState(0);
   const [finished, setFinish] = useState(0);
   const [rating, setRating] = useState<string | null>(null);
+  const [checked, checkedState] = useState(null);
 
   function getStarted(){
     setStart(1);
@@ -53,7 +54,7 @@ export default function Home() {
     
     setQuestions([(aiTag === 0 ? localStorage[question][1] : localStorage[question][0]) , (aiTag === 1 ? localStorage[question][1] : localStorage[question][0]), localStorage[question][2]]);
     setQuestion(question => question + 1);
-        
+    checkedState(null);   
   }
 
   const handleChange = (event: any) => {
@@ -95,6 +96,18 @@ export default function Home() {
     }
   }
 
+  const getRadioProps = useCallback((id, value) => {
+  return {
+    id,
+    value,
+    type: "radio",
+    name: "options",
+    checked: checked === value, // this will toggle the checked state
+    onChange: () => {checkedState(value); console.log("change");setSelectedValue(value);},
+  };
+}, [checked]); // update the props for all checkboxes, if the checked value changes
+
+
   return (
     <div className="flex flex-col place-items-center">
       <div className = "container">
@@ -118,7 +131,7 @@ export default function Home() {
       </div>
 
 
-      <div className = "row container" style={{ whiteSpace: "pre-line" }}>
+      {/* <div className = "row container" style={{ whiteSpace: "pre-line" }}>
         <div className="col-sm flex container items-center mb-4">
             <input id="default-radio-1" type="radio" value="0" name="default-radio" className="!w-4 !h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none" onClick = {handleChange}/>
             <label htmlFor="default-radio-1" className="select-none ms-2 text-sm font-medium text-heading">{questions[0]}</label>
@@ -126,6 +139,17 @@ export default function Home() {
         <div className="!ml-10 col-sm container flex items-center">
             <input id="default-radio-2" type="radio" value="1" name="default-radio" className="!w-4 !h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none" onClick = {handleChange}/>
             <label htmlFor="default-radio-2" className="select-none ms-2 text-sm font-medium text-heading">{questions[1]}</label>
+        </div>
+      </div> */}
+
+      <div className = "row container" style={{ whiteSpace: "pre-line" }}>
+        <div className="col-sm flex container items-center mb-4">
+            <input {...getRadioProps("one", 1)}/>
+            <label htmlFor="five">{questions[0]}</label>
+        </div>
+        <div className="!ml-10 col-sm container flex items-center">
+          <input {...getRadioProps("two", 2)}/>
+          <label htmlFor="five">{questions[1]}</label>
         </div>
       </div>
       
