@@ -46,13 +46,17 @@ export default function Home() {
       return;
     }
 
-    setAITag(getRandomInt(2));
+    const randomInt = getRandomInt(2);
+    console.log(randomInt);
+    setAITag(randomInt);
+    console.log("AITAGSET");
+    console.log(aiTag);
     
     // Resetting the values properly
     setSubmit(0);
     setSelectedValue(-1);
     
-    setQuestions([(aiTag === 0 ? localStorage[question][1] : localStorage[question][0]) , (aiTag === 1 ? localStorage[question][1] : localStorage[question][0]), localStorage[question][2]]);
+    setQuestions([(randomInt === 0 ? localStorage[question][1] : localStorage[question][0]) , (randomInt === 1 ? localStorage[question][1] : localStorage[question][0]), localStorage[question][2]]);
     setQuestion(question => question + 1);
     checkedState(null);   
   }
@@ -96,7 +100,7 @@ export default function Home() {
     }
   }
 
-  const getRadioProps = useCallback((id, value) => {
+  const getRadioProps = useCallback((id: any, value: any) => {
   return {
     id,
     value,
@@ -104,9 +108,15 @@ export default function Home() {
     name: "options",
     checked: checked === value, // this will toggle the checked state
     onChange: () => {checkedState(value); console.log("change");setSelectedValue(value);},
+    // onMouseEnter: (event:any) => {event.target.style.backgroundColor = "beige"; console.log("hi")},
+    // onMouseLeave: (event:any) => {event.target.style.backgroundColor = "#fffefb"; console.log("hi")}
   };
 }, [checked]); // update the props for all checkboxes, if the checked value changes
 
+
+  const clickContainer = () => {
+    console.log("click")
+  }
 
   return (
     <div className="flex flex-col place-items-center">
@@ -142,13 +152,22 @@ export default function Home() {
         </div>
       </div> */}
 
-      <div className = "row container" style={{ whiteSpace: "pre-line" }}>
+      {/* <div className = "row container" style={{ whiteSpace: "pre-line" }}>
         <div className="col-sm flex container items-center mb-4">
             <input {...getRadioProps("one", 1)}/>
             <label htmlFor="five">{questions[0]}</label>
         </div>
         <div className="!ml-10 col-sm container flex items-center">
           <input {...getRadioProps("two", 2)}/>
+          <label htmlFor="five">{questions[1]}</label>
+        </div>
+      </div> */}
+
+      <div className = "row container" style={{ whiteSpace: "pre-line" }}>
+        <div style = {{backgroundColor: selectedValue === 0 ? "beige" : "#fffefb"}} className="col-sm flex container items-center mb-4" onClick = {() => {setSelectedValue(0)}}>
+            <label htmlFor="five">{questions[0]}</label>
+        </div>
+        <div style = {{backgroundColor: selectedValue === 1 ? "beige" : "#fffefb"}} className="!ml-10 col-sm flex container items-center mb-4" onClick = {() => {setSelectedValue(1)}}>
           <label htmlFor="five">{questions[1]}</label>
         </div>
       </div>
