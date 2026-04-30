@@ -56,7 +56,7 @@ export default function Home() {
         
   }
 
-  const handleChange = (event: { target: { value: SetStateAction<number>; }; }) => {
+  const handleChange = (event: any) => {
     setSelectedValue(event.target.value);
     console.log("change");
   }
