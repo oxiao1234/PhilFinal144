@@ -100,24 +100,6 @@ export default function Home() {
     }
   }
 
-  const getRadioProps = useCallback((id: any, value: any) => {
-  return {
-    id,
-    value,
-    type: "radio",
-    name: "options",
-    checked: checked === value, // this will toggle the checked state
-    onChange: () => {checkedState(value); console.log("change");setSelectedValue(value);},
-    // onMouseEnter: (event:any) => {event.target.style.backgroundColor = "beige"; console.log("hi")},
-    // onMouseLeave: (event:any) => {event.target.style.backgroundColor = "#fffefb"; console.log("hi")}
-  };
-}, [checked]); // update the props for all checkboxes, if the checked value changes
-
-
-  const clickContainer = () => {
-    console.log("click")
-  }
-
   return (
     <div className="flex flex-col place-items-center">
       <div className = "container">
@@ -139,29 +121,6 @@ export default function Home() {
         <p className = "text-center col-sm">Question {question}/{localStorage.length}</p>
         <p className = "text-center col-sm">Topic: {questions[2]}</p>
       </div>
-
-
-      {/* <div className = "row container" style={{ whiteSpace: "pre-line" }}>
-        <div className="col-sm flex container items-center mb-4">
-            <input id="default-radio-1" type="radio" value="0" name="default-radio" className="!w-4 !h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none" onClick = {handleChange}/>
-            <label htmlFor="default-radio-1" className="select-none ms-2 text-sm font-medium text-heading">{questions[0]}</label>
-        </div>
-        <div className="!ml-10 col-sm container flex items-center">
-            <input id="default-radio-2" type="radio" value="1" name="default-radio" className="!w-4 !h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none" onClick = {handleChange}/>
-            <label htmlFor="default-radio-2" className="select-none ms-2 text-sm font-medium text-heading">{questions[1]}</label>
-        </div>
-      </div> */}
-
-      {/* <div className = "row container" style={{ whiteSpace: "pre-line" }}>
-        <div className="col-sm flex container items-center mb-4">
-            <input {...getRadioProps("one", 1)}/>
-            <label htmlFor="five">{questions[0]}</label>
-        </div>
-        <div className="!ml-10 col-sm container flex items-center">
-          <input {...getRadioProps("two", 2)}/>
-          <label htmlFor="five">{questions[1]}</label>
-        </div>
-      </div> */}
 
       <div className = "row container" style={{ whiteSpace: "pre-line" }}>
         <div style = {{backgroundColor: selectedValue === 0 ? "beige" : "#fffefb"}} className="col-sm flex container items-center mb-4" onClick = {() => {setSelectedValue(0)}}>
@@ -204,8 +163,8 @@ const AI1 = "I had a parrot named Miso that I ended up with by accident, the kin
 const Human2 = "One of my favorite stories about my family is the way my grandpa and grandma (or as I call them, Nonno and Nonna) got married. They were from a small town in Italy, called Moschiano, and my Nonna’s family sold lumber. My Nonno’s family sold chestnuts, but of course, chestnuts grow on trees— so one day my Nonno’s family had a business idea. Cut down some of the trees and sell lumber! Naturally, my Nonna’s family was pissed, and instead of handling this like adults, they decided to be sworn enemies. Their families hated each other— but when my Nonno saw my Nonna overlooking her balcony, it was all over. He couldn’t hate the family anymore, because he loved her. A modern day Romeo and Juliet story was born (but with a much happier ending, thank god). \n\nAt first their meetings were secretive, he would walk under her balcony everyday to see her. But as things grew serious, their parent’s didn’t seem to be willing to budge. So, one day, my grandpa left to immigrate to NY. A few years later, my grandma made up her mind to leave too, to go marry my grandfather, but it wasn’t as simple for her to leave as it had been for him. She had my great aunt, her younger sister, put on one of her bright dresses and hats and sit on her balcony, so if their father— who worked in town— looked towards home (it was a REALLY small town) he would figure she was on the balcony and that nothing was amiss. Meanwhile, while my great aunt read, my great uncle took my grandma to the next town to get a passport and get her on a train, the first transportation in what would be a long trip to America. \n\nOut of her 7 siblings and many other family members, only my great aunt and uncle knew she was leaving. By the time her father got home later, it was too late. She was gone. About 10 years later, they arranged to come back and started talking to their families again. There is still some hatred amongst them— just a few years ago one of my cousins on my Nonno’s side promised to marry another one from my Nonna’s side, and he got her pregnant then refused to marry her. Apparently my Nonno almost got stabbed over that, when he couldn’t convince the boy to go through with the marriage. But at least on this side of the Atlantic, the Giovanis and the Pacoulis now get along quite nicely :)"
 const AI2 = "One of my favorite stories is how my aunt met her husband. It sounds almost too simple now, but at the time it felt like the kind of coincidence people pretend they do not believe in until it happens to them. They met in an airport in Atlanta, during one of those travel days where everything feels slightly off. My aunt was coming back from a work trip to Denver, exhausted and carrying a coffee she had already forgotten to drink. Her flight home was delayed, of course, and she ended up sitting near Gate 22 just scrolling through her phone with no real intention of doing anything else. \n\n He was already there when she arrived, sitting a few seats away with his backpack between his feet like he was guarding it from disappearing. He was supposed to be flying to Chicago for a conference, but his plane had been pushed back twice. At some point he looked over and noticed she was quietly laughing at something on her screen. He asked what it was, and she told him it was just a video of a raccoon stealing someone’s sandwich from a park bench. That was basically it at first. Just small conversation that did not feel important enough to remember, except that neither of them stopped talking. Delays have a way of making people softer around the edges, like there is suddenly time to be human with strangers. When his flight was finally called, he stood up and hesitated like he was debating whether it mattered. Then he asked for her number in a way that sounded casual but clearly was not. She gave it to him. They texted before he even boarded, and kept texting after the plane took off like nothing had ended. \n\nA few months later, they realized they kept ending up in the same cities for work. A year after that, they stopped calling it coincidence and just started planning around it. Now they always say they met because of a delay. But I think it is more than that. It is the kind of story that only works because both of them stayed sitting long enough to notice each other."
 
-const Human3 = ""
-const AI3 = ""
+const Human3 = "When one thinks about the best friendships that they would like to have, they likely think towards a friend group that they've seen in a movie or TV show, or perhaps even a book. Groups like Friends, or the Breakfast Club. But an underrated friend group is really the Minions. They've hung out together since the beginning of time, and yet they never get tired of each other. Imagine another friend group that has dozens and dozens of friends that know each other and haven't ever had a massive, friend group imploding fight. \n\nWhile there are some smaller cliques within the friend group, like Bob, Kevin and Stuart, it never feels exclusionary, as it could with other groups. Really, as we study the Minions as an entity, we can gather greater insights into what actually makes friendships and friend groups succeed. Shared goals and interests ensure that they are always aligned in the ways that they act. Even if not perfectly so, they can work out any differences by knowing that they are all part of the same whole, the Minions. If society became more like the Minions, we would all be better for it."
+const AI3 = "I think friendships are one of those things you don’t fully notice while they’re forming, and then one day you realize certain people have just become part of your routine. It’s not usually some big moment, more like a bunch of small ones stacked together. Sitting around doing nothing, sending each other things that aren’t even that funny, or having the same conversation over and over without getting tired of it. I have friends I don’t talk to every day, but when we do it feels like no time passed at all, which is a weird kind of comfort. \n\nThere’s also something nice about how low pressure it can be compared to everything else. You can show up a little off, a little tired, not fully put together, and it’s fine. Good friends don’t really need an explanation for that. At the same time, they’re the people who will call you out if you’re being unreasonable, but in a way that doesn’t make you feel judged. I don’t think I’ve ever sat down and thought about why certain friendships last, but I think it has something to do with how easy it is to just exist around each other."
 
 const Human4 = "Often, people describe love as being driven by fate rather than choice. It’s meant to find you, you can’t help who you love, and sometimes love just fizzles out. I understand why this is easy to believe. After spending countless hours swiping on dating apps to no avail, who wouldn’t want to believe that love is meant to find them as opposed to the other way around? While feeling too attached to leave a relationship that keeps disappointing, who wouldn’t want to believe that this is out of their control? To some extent, I know this is true. Often, our love for people in our lives starts and ends when we least expect it. \n\nHowever, I believe actions are what keep love alive. In my eyes, my love is something I feed every time I spend hours crafting a gift for my girlfriend, call my mom and spill every detail of my day, or initiate plans with my friends so we can laugh together. It may feel intuitive or natural in the moment, but I am still taking steps to nourish the relationships I value the most. It means so much more when I actively participate in the love I feel for people instead of simply passively experiencing it."
 const AI4 = "I think love is a lot less dramatic than people make it out to be. It is not always big moments or perfect timing, and most of the time it does not feel like something you can point to and say “there it is.” It shows up in smaller ways, like remembering how someone takes their coffee or noticing when they go quiet and asking why. It is sitting next to someone and not feeling the need to fill every second with conversation, because the silence is not uncomfortable. \n\nI used to think love had to feel intense all the time, like something out of a movie, but it is usually steadier than that. It is choosing to stay when things are a little inconvenient or when the other person is not at their best. It is also being known in a way that feels a little exposing at first, like someone can see all the parts of you that you usually keep to yourself, and deciding you are okay with that. I do not think love solves everything, but it makes things feel more manageable, like you are not carrying everything on your own anymore."
@@ -213,14 +172,14 @@ const AI4 = "I think love is a lot less dramatic than people make it out to be. 
 const Human5 = "I understand why people don’t enjoy running - it’s painful, long, and tiring. I sometimes question why I even go on runs. I feel aches and pains I haven’t felt since I was a wee 17 year old after completing a long run. I would love to say that I run because of the self-reflection it allows me. However, most of my runs are spent imagining myself in a TikTok edit when a Doja Cat song comes on. \n\nI think one of the main reasons I actually enjoy running is the sense of completion I get after a run. I could have done nothing all day, but the completion of a run helps me feel a little self gratification. The Tarheel Ten which I just completed is a great example of this. It was painful, long, and tiring, but all of that felt worth it when I completed the ten miles. It was enough to know that I can do hard things."
 const AI5 = "I never thought woodworking would be this much second guessing. I usually start with a simple idea, like a small table or a wall shelf, and somehow it always turns into me staring at a crooked line trying to convince myself it is “character” and not just a mistake I do not want to fix. \n\nThe shop I use smells like old pine and metal that has been left outside too long. My hands are usually a mix of dry dust and tiny cuts I only notice when I wash them later. There is always one measurement I swear I got right the first time, and then I check it again and it is off by just enough to matter. \n\nStill, I keep going back. Not because it is relaxing, it really is not, but because there is a point where the pieces start to resemble what I had in my head. It is usually imperfect and a little stubborn, but it holds together. And for some reason that feels like enough to come back and try again."
 
-const Human6 = ""
-const AI6 = ""
+const Human6 = "As a college student, I frequently think about career. It seems like such a big decision to make because I'll be spending most of my life in that career. Thinking about it, a normal job means you spend around 40 hours a week, or even more if you have to commute. I can't think of many things I do currently that I do for 40 hours, much less anything that I would be happy doing for that long. Except maybe watching TikTok's, but even then I get fatigued after a couple of hours. This brings the big question of, what would I like to do for my career? \n\nEvery job seems to have its tradeoffs. Money, time, stress, etc. I could make a lot of money, but there aren't many jobs where I wouldn't have to dedicate a lot of time to do so. Or, at the very least, a lot of stress. Really, I would love to do a little bit of everything. Maybe I could be working a blue-collar job like construction for one day a week, then work a desk-job for a couple days, then do something fun, like being a writer or artist. Because, as I said before, there's really nothing I'd like to do for 40 hours a week, but there are a lot of things I would like to do for maybe 10 hours a week."
+const AI6 = "I think college is one of those things that feels very different depending on the day. Sometimes it feels exciting, like everything is new and slightly unpredictable, and other times it just feels like a lot of walking to places you don’t really want to be. You go from having a loose sense of independence to suddenly being responsible for your own time, which sounds great until you realize how easy it is to waste it. There are days where you feel productive and on top of everything, and then there are days where you skip a class and tell yourself you will catch up later, knowing you probably won’t. \n\nA lot of it ends up being about the people, more than the classes. Sitting around in someone’s room, talking longer than you planned to, or deciding to get food way too late at night for no real reason. Those are the parts that stick. At the same time, there is this quiet pressure running in the background, like you are supposed to be figuring something out even if you are not sure what that is yet. I don’t think college is as put together as it looks from the outside, but maybe that is the point."
 
 const localStorage = [
   [Human1, AI1, 'Pets'],
   [Human2, AI2, 'Family'],
-  ['Human 3', 'AI 3', 'Friends'],
+  [Human3, AI3, 'Friends'],
   [Human4, AI4, 'Love'],
   [Human5, AI5, 'Hobby'],
-  ['Human 6', 'AI 6', 'Career']
+  [Human6, AI6, 'Career']
 ]
