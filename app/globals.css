@@ -74,3 +74,5 @@ body {
     border-color: #8064A2 !important;
 }
 
+
+.radio-button { min-width: 24px; }
